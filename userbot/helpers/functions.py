@@ -21,15 +21,17 @@ async def perumusic(peru, QUALITY):
         "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
     }
     html = requests.get(
-        "https://www.youtube.com/results?search_query=" + search, headers=headers
+        f'https://www.youtube.com/results?search_query={search}',
+        headers=headers,
     ).text
+
     soup = BeautifulSoup(html, "html.parser")
     for link in soup.find_all("a"):
         if "/watch?v=" in link.get("href"):
             # May change when Youtube Website may get updated in the future.
             video_link = link.get("href")
             break
-    video_link = "http://www.youtube.com/" + video_link
+    video_link = f'http://www.youtube.com/{video_link}'
     command = (
         "youtube-dl --extract-audio --audio-format mp3 --audio-quality "
         + QUALITY
@@ -45,15 +47,17 @@ async def perumusicvideo(peru):
         "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
     }
     html = requests.get(
-        "https://www.youtube.com/results?search_query=" + search, headers=headers
+        f'https://www.youtube.com/results?search_query={search}',
+        headers=headers,
     ).text
+
     soup = BeautifulSoup(html, "html.parser")
     for link in soup.find_all("a"):
         if "/watch?v=" in link.get("href"):
             # May change when Youtube Website may get updated in the future.
             video_link = link.get("href")
             break
-    video_link = "http://www.youtube.com/" + video_link
+    video_link = f'http://www.youtube.com/{video_link}'
     command = 'youtube-dl -f "[filesize<20M]" ' + video_link
     os.system(command)
 
@@ -74,7 +78,7 @@ async def get_readable_time(seconds: int) -> str:
     for x in range(hmm):
         time_list[x] = str(time_list[x]) + time_suffix_list[x]
     if len(time_list) == 4:
-        up_time += time_list.pop() + ", "
+        up_time += f'{time_list.pop()}, '
     time_list.reverse()
     up_time += ":".join(time_list)
     return up_time
@@ -103,12 +107,13 @@ async def yt_search(peru):
     try:
         peru = urllib.parse.quote(peru)
         html = urllib.request.urlopen(
-            "https://www.youtube.com/results?search_query=" + peru
+            f'https://www.youtube.com/results?search_query={peru}'
         )
-        user_data = re.findall(r"watch\?v=(\S{11})", html.read().decode())
-        video_link = None
-        if user_data:
-            video_link = "https://www.youtube.com/watch?v=" + user_data[0]
+
+        if user_data := re.findall(r"watch\?v=(\S{11})", html.read().decode()):
+            video_link = f'https://www.youtube.com/watch?v={user_data[0]}'
+        else:
+            video_link = None
         if video_link:
             return video_link
         return "Couldnt fetch results"
@@ -228,10 +233,7 @@ async def convert_tosticker(image):
 async def covidindia(state):
     url = "https://www.mohfw.gov.in/data/datanew.json"
     req = requests.get(url).json()
-    for i in states:
-        if i == state:
-            return req[states.index(i)]
-    return None
+    return next((req[states.index(i)] for i in states if i == state), None)
 
 
 # for nekobot

@@ -2,9 +2,10 @@ import os
 
 from telethon.tl.types import ChatBannedRights
 
-ENV = bool(os.environ.get("ENV", False))
-if ENV:
+if ENV := bool(os.environ.get("ENV", False)):
     import os
+
+
 
     class Config(object):
         LOGGER = True
@@ -48,9 +49,10 @@ if ENV:
         # TG API limit. A message can have maximum 4096 characters!
         MAX_MESSAGE_SIZE_LIMIT = 4095
         # set blacklist_chats where you do not want userbot's features
-        UB_BLACK_LIST_CHAT = set(
+        UB_BLACK_LIST_CHAT = {
             int(x) for x in os.environ.get("UB_BLACK_LIST_CHAT", "").split()
-        )
+        }
+
         # maximum number of messages for antiflood
         MAX_ANTI_FLOOD_MESSAGES = 10
         # warn mode for anti flood
@@ -76,9 +78,7 @@ if ENV:
         MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 3))
         # set to True if you want to log PMs to your PM_LOGGR_BOT_API_ID
         NC_LOG_P_M_S = bool(os.environ.get("NC_LOG_P_M_S", False))
-        # send .get_id in any channel to forward all your NEW PMs to this group
-        PM_LOGGR_BOT_API_ID = os.environ.get("PM_LOGGR_BOT_API_ID", None)
-        if PM_LOGGR_BOT_API_ID:
+        if PM_LOGGR_BOT_API_ID := os.environ.get("PM_LOGGR_BOT_API_ID", None):
             PM_LOGGR_BOT_API_ID = int(PM_LOGGR_BOT_API_ID)
         # For Databases
         # can be None in which case plugins requiring
@@ -95,7 +95,7 @@ if ENV:
         # specify list of users allowed to use bot
         # WARNING: be careful who you grant access to your bot.
         # malicious users could do ".exec rm -rf /*"
-        SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
+        SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
         # VeryStream only supports video formats
         VERY_STREAM_LOGIN = os.environ.get("VERY_STREAM_LOGIN", None)
         VERY_STREAM_KEY = os.environ.get("VERY_STREAM_KEY", None)
@@ -116,9 +116,8 @@ if ENV:
         AUTH_TOKEN_DATA = os.environ.get("AUTH_TOKEN_DATA", None)
         if AUTH_TOKEN_DATA != None:
             os.makedirs(TMP_DOWNLOAD_DIRECTORY)
-            t_file = open(TMP_DOWNLOAD_DIRECTORY + "auth_token.txt", "w")
-            t_file.write(AUTH_TOKEN_DATA)
-            t_file.close()
+            with open(f'{TMP_DOWNLOAD_DIRECTORY}auth_token.txt', "w") as t_file:
+                t_file.write(AUTH_TOKEN_DATA)
         YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
         GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
         # MongoDB
@@ -130,6 +129,7 @@ if ENV:
             "OFFICAL_UPSTREAM_REPO", "https://github.com/PerU-MoNsteR/Eliza"
         )
 
+
     BIO_MSG = os.environ.get("ALIVE_MSG", None)
     TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "Eliza")
     HASH_TO_TORRENT_API = os.environ.get(
@@ -139,12 +139,18 @@ if ENV:
     # TG API limit. An album can have atmost 10 media!
     GOOGLE_SEARCH_COUNT_LIMIT = int(os.environ.get("GOOGLE_SEARCH_COUNT_LIMIT", 9))
     TG_GLOBAL_ALBUM_LIMIT = int(os.environ.get("TG_GLOBAL_ALBUM_LIMIT", 9))
-    SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
-    WHITELIST_USERS = set(int(x) for x in os.environ.get("WHITELIST_USERS", "").split())
-    BLACKLIST_USERS = set(int(x) for x in os.environ.get("BLACKLIST_USERS", "").split())
-    DEVLOPERS = set(int(x) for x in os.environ.get("DEVLOPERS", "").split())
-    OWNER_ID = set(int(x) for x in os.environ.get("OWNER_ID", "").split())
-    SUPPORT_USERS = set(int(x) for x in os.environ.get("SUPPORT_USERS", "").split())
+    SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
+    WHITELIST_USERS = {
+        int(x) for x in os.environ.get("WHITELIST_USERS", "").split()
+    }
+
+    BLACKLIST_USERS = {
+        int(x) for x in os.environ.get("BLACKLIST_USERS", "").split()
+    }
+
+    DEVLOPERS = {int(x) for x in os.environ.get("DEVLOPERS", "").split()}
+    OWNER_ID = {int(x) for x in os.environ.get("OWNER_ID", "").split()}
+    SUPPORT_USERS = {int(x) for x in os.environ.get("SUPPORT_USERS", "").split()}
     # Very Stream
     VERY_STREAM_LOGIN = os.environ.get("VERY_STREAM_LOGIN", None)
     VERY_STREAM_KEY = os.environ.get("VERY_STREAM_KEY", None)
@@ -155,7 +161,6 @@ if ENV:
     ASSISTANT_LOG = int(os.environ.get("ASSISTANT_LOG", False))
 
 else:
-
     class Config(object):
         DB_URI = None
         # Add your UniBorg Vars Here

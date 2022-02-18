@@ -10,7 +10,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    fboot = f"fastboot"
+    fboot = 'fastboot'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -32,7 +32,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    adb = f"adb"
+    adb = 'adb'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -54,7 +54,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    afh = f"afh"
+    afh = 'afh'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -76,7 +76,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    aex = f"aex"
+    aex = 'aex'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -98,7 +98,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    aosip = f"aosip"
+    aosip = 'aosip'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -120,7 +120,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    reapk = f"reapk"
+    reapk = 'reapk'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -142,7 +142,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    am = f"am"
+    am = 'am'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -164,7 +164,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    aqua = f"aqua"
+    aqua = 'aqua'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -186,7 +186,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    arrow = f"arrow"
+    arrow = 'arrow'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -208,7 +208,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    aicp = f"aicp"
+    aicp = 'aicp'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -230,7 +230,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    asus = f"asus"
+    asus = 'asus'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -252,7 +252,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    bootleg = f"bootleg"
+    bootleg = 'bootleg'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -274,7 +274,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    caf = f"caf"
+    caf = 'caf'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -296,7 +296,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    candy = f"candy"
+    candy = 'candy'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -318,7 +318,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    carbon = f"carbon"
+    carbon = 'carbon'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -340,7 +340,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    top = f"top"
+    top = 'top'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -362,7 +362,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    popular = f"popular"
+    popular = 'popular'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -384,7 +384,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    apk = f"apk"
+    apk = 'apk'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -406,7 +406,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    discover = f"discover"
+    discover = 'discover'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -428,7 +428,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    colt = f"colt"
+    colt = 'colt'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -450,7 +450,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    cosp = f"cosp"
+    cosp = 'cosp'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -472,7 +472,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    crdroid = f"crdroid"
+    crdroid = 'crdroid'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -494,7 +494,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    ddump = f"ddump"
+    ddump = 'ddump'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -516,7 +516,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    ddog = f"ddog"
+    ddog = 'ddog'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -538,7 +538,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    dev = f"dev"
+    dev = 'dev'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -560,7 +560,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    astudio = f"astudio"
+    astudio = 'astudio'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -582,7 +582,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    cs = f"cs"
+    cs = 'cs'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -605,7 +605,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    deviceinfos = f"deviceinfos"
+    deviceinfos = 'deviceinfos'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -627,7 +627,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    codename = f"codename"
+    codename = 'codename'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -649,7 +649,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    specs = f"specs"
+    specs = 'specs'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -671,7 +671,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    dotos = f"dotos"
+    dotos = 'dotos'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -693,7 +693,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    du = f"du"
+    du = 'du'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -715,7 +715,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    dump = f"dump"
+    dump = 'dump'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -737,7 +737,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    evox = f"evox"
+    evox = 'evox'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -759,7 +759,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    fdroid = f"fdroid"
+    fdroid = 'fdroid'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -781,7 +781,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    gapps = f"gapps"
+    gapps = 'gapps'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -803,7 +803,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    gcam = f"gcam"
+    gcam = 'gcam'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -825,7 +825,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    repos = f"repos"
+    repos = 'repos'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -847,7 +847,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    commits = f"commits"
+    commits = 'commits'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -869,7 +869,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    getdump = f"getdump"
+    getdump = 'getdump'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -891,7 +891,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    ps = f"ps"
+    ps = 'ps'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -913,7 +913,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    gsi = f"gsi"
+    gsi = 'gsi'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -935,7 +935,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    havoc = f"havoc"
+    havoc = 'havoc'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -957,7 +957,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    huawei = f"huawei"
+    huawei = 'huawei'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -979,7 +979,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    kraken = f"kraken"
+    kraken = 'kraken'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1001,7 +1001,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    labs = f"labs"
+    labs = 'labs'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1023,7 +1023,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    licrog = f"licrog"
+    licrog = 'licrog'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1045,7 +1045,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    lineage = f"lineage"
+    lineage = 'lineage'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1067,7 +1067,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    magisk = f"magisk"
+    magisk = 'magisk'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1089,7 +1089,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    microg = f"microg"
+    microg = 'microg'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1111,7 +1111,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    moto = f"moto"
+    moto = 'moto'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1133,7 +1133,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    nanodroid = f"nanodroid"
+    nanodroid = 'nanodroid'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1155,7 +1155,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    omni = f"omni"
+    omni = 'omni'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1177,7 +1177,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    op = f"op"
+    op = 'op'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1199,7 +1199,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    oppo = f"oppo"
+    oppo = 'oppo'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1221,7 +1221,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    of = f"of"
+    of = 'of'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1243,7 +1243,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    pe = f"pe"
+    pe = 'pe'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1265,7 +1265,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    pdust = f"pdust"
+    pdust = 'pdust'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1287,7 +1287,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    pixy = f"pixy"
+    pixy = 'pixy'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1309,7 +1309,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    potato = f"potato"
+    potato = 'potato'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1331,7 +1331,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    realme = f"realme"
+    realme = 'realme'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1353,7 +1353,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    revenge = f"revenge"
+    revenge = 'revenge'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1375,7 +1375,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    rr = f"rr"
+    rr = 'rr'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1397,7 +1397,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    samdump = f"samdump"
+    samdump = 'samdump'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1419,7 +1419,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    sonydump = f"sonydump"
+    sonydump = 'sonydump'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1441,7 +1441,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    superior = f"superior"
+    superior = 'superior'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1463,7 +1463,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    syberia = f"syberia"
+    syberia = 'syberia'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1485,7 +1485,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    twrp = f"twrp"
+    twrp = 'twrp'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1507,7 +1507,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    viper = f"viper"
+    viper = 'viper'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1529,7 +1529,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    devdb = f"devdb"
+    devdb = 'devdb'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1551,7 +1551,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    xiaomi = f"xiaomi"
+    xiaomi = 'xiaomi'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1573,7 +1573,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    xposed = f"xposed"
+    xposed = 'xposed'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:
@@ -1595,7 +1595,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    xtended = f"xtended"
+    xtended = 'xtended'
     await event.edit("```Processing```")
     async with bot.conversation("@android_helper_bot") as conv:
         try:

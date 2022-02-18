@@ -33,7 +33,7 @@ heroku_api = "https://api.heroku.com"
 HEROKU_APP_NAME = Config.HEROKU_APP_NAME
 HEROKU_API_KEY = Config.HEROKU_API_KEY
 
-thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "thumb_image.jpg"
+thumb_image_path = f'{Config.TMP_DOWNLOAD_DIRECTORY}thumb_image.jpg'
 
 PM_START = []
 
@@ -62,10 +62,7 @@ else:
 
 cat_users = [bot.uid]
 if Config.SUDO_USERS:
-    for user in Config.SUDO_USERS:
-        cat_users.append(user)
-
-
+    cat_users.extend(iter(Config.SUDO_USERS))
 # ================================================
 
 if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
@@ -74,8 +71,7 @@ if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
 
 # thumb image
 if Config.THUMB_IMAGE != None:
-    check = url(Config.THUMB_IMAGE)
-    if check:
+    if check := url(Config.THUMB_IMAGE):
         try:
             with open(thumb_image_path, "wb") as f:
                 f.write(requests.get(Config.THUMB_IMAGE).content)
@@ -140,7 +136,7 @@ async def catalive():
             "Authorization": f"Bearer {Config.HEROKU_API_KEY}",
             "Accept": "application/vnd.heroku+json; version=3.account-quotas",
         }
-        path = "/accounts/" + user_id + "/actions/get-quota"
+        path = f'/accounts/{user_id}/actions/get-quota'
         r = requests.get(heroku_api + path, headers=headers)
         result = r.json()
         quota = result["account_quota"]

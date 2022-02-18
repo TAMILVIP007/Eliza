@@ -444,9 +444,7 @@ async def pin(msg):
     if not to_pin:
         return await edit_delete(msg, "`Reply to a message to pin it.`", 5)
     options = msg.pattern_match.group(1)
-    is_silent = False
-    if options == "loud":
-        is_silent = True
+    is_silent = options == "loud"
     try:
         await msg.client.pin_message(msg.chat_id, to_pin, notify=is_silent)
     except BadRequestError:
@@ -537,7 +535,7 @@ async def kick(usr):
         await usr.client.kick_participant(usr.chat_id, user.id)
         await sleep(0.5)
     except Exception as e:
-        await webevent.edit(NO_PERM + f"\n{str(e)}")
+        await webevent.edit(f'{NO_PERM}\n{str(e)}')
         return
     if reason:
         await webevent.edit(
@@ -636,8 +634,6 @@ async def testing(event):
     await event.edit("..")
     everyone = await event.client.get_participants(event.chat_id)
     for user in everyone:
-        if user.id == men.id:
-            pass
         try:
             await event.client(
                 EditBannedRequest(

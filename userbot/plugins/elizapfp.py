@@ -25,7 +25,7 @@ PERU_USERNAME = str(PERU_USERNAME) if PERU_USERNAME else "@PERU_MONSTER"
 
 @bot.on(admin_cmd(pattern="peru$"))
 async def autopic(event):
-    await event.edit(f"Autopic plugin made by @peru_monster")
+    await event.edit('Autopic plugin made by @peru_monster')
     downloaded_file_name = "userbot/original_pic.png"
     downloader = SmartDL(PERU_PIC, downloaded_file_name, progress_bar=False)
     downloader.start(blocking=False)
@@ -82,10 +82,10 @@ async def animepp():
     os.system("rm -rf donot.jpg")
     rnd = random.randint(0, len(COLLECTION_STRING) - 1)
     pack = COLLECTION_STRING[rnd]
-    pc = requests.get("http://getwallpapers.com/collection/" + pack).text
+    pc = requests.get(f'http://getwallpapers.com/collection/{pack}').text
     f = re.compile("/\w+/full.+.jpg")
     f = f.findall(pc)
-    fy = "http://getwallpapers.com" + random.choice(f)
+    fy = f'http://getwallpapers.com{random.choice(f)}'
     print(fy)
     if not os.path.exists("f.ttf"):
         urllib.request.urlretrieve(
@@ -134,13 +134,13 @@ async def animepp():
 
     pack = COLLECTION_STRINGZ[rnd]
 
-    pc = requests.get("http://getwallpapers.com/collection/" + pack).text
+    pc = requests.get(f'http://getwallpapers.com/collection/{pack}').text
 
     f = re.compile("/\w+/full.+.jpg")
 
     f = f.findall(pc)
 
-    fy = "http://getwallpapers.com" + random.choice(f)
+    fy = f'http://getwallpapers.com{random.choice(f)}'
 
     print(fy)
 
@@ -501,10 +501,10 @@ async def animepp():
     os.system("rm -rf donot.jpg")
     rnd = random.randint(0, len(COLLECTION_STRING) - 1)
     pack = COLLECTION_STRING[rnd]
-    pc = requests.get("http://getwallpapers.com/collection/" + pack).text
+    pc = requests.get(f'http://getwallpapers.com/collection/{pack}').text
     f = re.compile("/\w+/full.+.jpg")
     f = f.findall(pc)
-    fy = "http://getwallpapers.com" + random.choice(f)
+    fy = f'http://getwallpapers.com{random.choice(f)}'
     print(fy)
     if not os.path.exists("f.ttf"):
         urllib.request.urlretrieve(

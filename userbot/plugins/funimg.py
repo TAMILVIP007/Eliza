@@ -283,9 +283,7 @@ from userbot.utils import admin_cmd
 
 from . import ALIVE_NAME
 
-PERUMONSTER = (
-    Config.DEEP_AI if Config.DEEP_AI else "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
-)
+PERUMONSTER = Config.DEEP_AI or "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
 
 
 WEBO_IS_ALIVE = str(ALIVE_NAME) if ALIVE_NAME else "Eliza"
@@ -316,18 +314,6 @@ async def _(event):
             headers={"api-key": PERUMONSTER},
         )
 
-        os.remove(media)
-        if "status" in r.json():
-            return await devent.edit(r.json()["status"])
-        r_json = r.json()["output_url"]
-        pic_id = r.json()["id"]
-
-        link = f"https://api.deepai.org/job-view-file/{pic_id}/inputs/image.jpg"
-        result = f"{r_json}"
-
-        await devent.delete()
-        await borg.send_message(event.chat_id, file=result)
-
     else:
         devent = await event.edit("styling...")
         r = requests.post(
@@ -339,17 +325,18 @@ async def _(event):
             headers={"api-key": PERUMONSTER},
         )
 
-        os.remove(media)
-        if "status" in r.json():
-            return await devent.edit(r.json()["status"])
-        r_json = r.json()["output_url"]
-        pic_id = r.json()["id"]
 
-        link = f"https://api.deepai.org/job-view-file/{pic_id}/inputs/image.jpg"
-        result = f"{r_json}"
+    os.remove(media)
+    if "status" in r.json():
+        return await devent.edit(r.json()["status"])
+    r_json = r.json()["output_url"]
+    pic_id = r.json()["id"]
 
-        await devent.delete()
-        await borg.send_message(event.chat_id, file=result)
+    link = f"https://api.deepai.org/job-view-file/{pic_id}/inputs/image.jpg"
+    result = f"{r_json}"
+
+    await devent.delete()
+    await borg.send_message(event.chat_id, file=result)
 
 
 import os
@@ -360,9 +347,7 @@ from userbot.utils import admin_cmd
 
 from . import ALIVE_NAME
 
-PERUMONSTER = (
-    Config.DEEP_AI if Config.DEEP_AI else "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
-)
+PERUMONSTER = Config.DEEP_AI or "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
 
 
 WEBO_IS_ALIVE = str(ALIVE_NAME) if ALIVE_NAME else "Eliza"
@@ -393,18 +378,6 @@ async def _(event):
             headers={"api-key": PERUMONSTER},
         )
 
-        os.remove(media)
-        if "status" in r.json():
-            return await devent.edit(r.json()["status"])
-        r_json = r.json()["output_url"]
-        pic_id = r.json()["id"]
-
-        link = f"https://api.deepai.org/job-view-file/{pic_id}/inputs/image.jpg"
-        result = f"{r_json}"
-
-        await devent.delete()
-        await borg.send_message(event.chat_id, file=result)
-
     else:
         devent = await event.edit("styling...")
         r = requests.post(
@@ -416,17 +389,18 @@ async def _(event):
             headers={"api-key": PERUMONSTER},
         )
 
-        os.remove(media)
-        if "status" in r.json():
-            return await devent.edit(r.json()["status"])
-        r_json = r.json()["output_url"]
-        pic_id = r.json()["id"]
 
-        link = f"https://api.deepai.org/job-view-file/{pic_id}/inputs/image.jpg"
-        result = f"{r_json}"
+    os.remove(media)
+    if "status" in r.json():
+        return await devent.edit(r.json()["status"])
+    r_json = r.json()["output_url"]
+    pic_id = r.json()["id"]
 
-        await devent.delete()
-        await borg.send_message(event.chat_id, file=result)
+    link = f"https://api.deepai.org/job-view-file/{pic_id}/inputs/image.jpg"
+    result = f"{r_json}"
+
+    await devent.delete()
+    await borg.send_message(event.chat_id, file=result)
 
 
 CMD_HELP.update(

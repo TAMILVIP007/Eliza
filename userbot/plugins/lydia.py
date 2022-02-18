@@ -41,10 +41,11 @@ async def addcf(event):
     if reply_msg:
         session = Lydia.create_session()
         session_id = session.id
-        ACC_LYDIA.update({str(event.chat_id) + " " + str(reply_msg.from_id): session})
+        ACC_LYDIA.update({f'{str(event.chat_id)} {str(reply_msg.from_id)}': session})
         SESSION_ID.update(
-            {str(event.chat_id) + " " + str(reply_msg.from_id): session_id}
+            {f'{str(event.chat_id)} {str(reply_msg.from_id)}': session_id}
         )
+
         await event.edit(
             "Lydia successfully enabled for user: {} in chat: {}".format(
                 str(reply_msg.from_id), str(event.chat_id)
@@ -63,8 +64,8 @@ async def remcf(event):
     await event.edit("Processing...")
     reply_msg = await event.get_reply_message()
     try:
-        del ACC_LYDIA[str(event.chat_id) + " " + str(reply_msg.from_id)]
-        del SESSION_ID[str(event.chat_id) + " " + str(reply_msg.from_id)]
+        del ACC_LYDIA[f'{str(event.chat_id)} {str(reply_msg.from_id)}']
+        del SESSION_ID[f'{str(event.chat_id)} {str(reply_msg.from_id)}']
         await event.edit(
             "Lydia successfully disabled for user: {} in chat: {}".format(
                 str(reply_msg.from_id), str(event.chat_id)
@@ -78,14 +79,12 @@ async def remcf(event):
 async def user(event):
     event.text
     try:
-        session = ACC_LYDIA[str(event.chat_id) + " " + str(event.from_id)]
-        session_id = SESSION_ID[str(event.chat_id) + " " + str(event.from_id)]
+        session = ACC_LYDIA[f'{str(event.chat_id)} {str(event.from_id)}']
+        session_id = SESSION_ID[f'{str(event.chat_id)} {str(event.from_id)}']
         msg = event.text
         async with event.client.action(event.chat_id, "typing"):
             text_rep = session.think_thought((session_id, msg))
-            wait_time = 0
-            for i in range(len(text_rep)):
-                wait_time = wait_time + 0.1
+            wait_time = sum(0.1 for _ in range(len(text_rep)))
             await asyncio.sleep(wait_time)
             await event.reply(text_rep)
     except KeyError:

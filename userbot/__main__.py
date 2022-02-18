@@ -76,12 +76,12 @@ else:
 
 print("Efforts never fail, thank @peru_monster for this awesome Eliza userbot.")
 
-if len(argv) not in (1, 3, 4):
-    bot.disconnect()
-else:
+if len(argv) in {1, 3, 4}:
     bot.run_until_disconnected()
 
 
+else:
+    bot.disconnect()
 """before assisstant
     async def add_bot(bot_token):
     await bot.start(bot_token)

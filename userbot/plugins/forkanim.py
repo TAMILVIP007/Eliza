@@ -12,10 +12,6 @@ async def _(event):
 
         return
 
-    animation_interval = 2
-
-    animation_ttl = range(0, 15)
-
     input_str = event.pattern_match.group(1)
 
     if input_str == "fork":
@@ -38,6 +34,10 @@ async def _(event):
             "`Fork Deployed...`\n\n@Eliza_support_group ( `Custom Built By` @peru_monster ) \n`Verified Account:` ✅\n`Repo:` https://github.com/PerU-MoNsteR/Eliza\n\n`Python` 3.8.6 (default, jan 2020, 01:19:52)\n[GCC 8.4.0]\n`Telethon` 1.16.0\n\n`Custom Built Fork:` https://github.com/PerU-MoNsteR/Eliza",
         ]
 
+        animation_interval = 2
+
+        animation_ttl = range(15)
+
         for i in animation_ttl:
 
             await asyncio.sleep(animation_interval)
@@ -50,7 +50,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.1
-    animation_ttl = range(0, 36)
+    animation_ttl = range(36)
     # input_str = event.pattern_match.group(1)
     # if input_str == "nope":
     await event.edit("nope")
