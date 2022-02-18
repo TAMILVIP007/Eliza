@@ -47,7 +47,7 @@ async def _(event):
         await edit_or_reply(event, "No User is Defined\n Can't hack account")
 
 
-@bot.on(admin_cmd(pattern=f"thack$", outgoing=True))
+@bot.on(admin_cmd(pattern='thack$', outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -72,7 +72,7 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"wahack$", outgoing=True))
+@bot.on(admin_cmd(pattern='wahack$', outgoing=True))
 async def _(event):
     if event.fwd_from:
         return

@@ -21,13 +21,10 @@ from var import Var
 from . import CMD_LIST, LOAD_PLUG, LOGS, SUDO_LIST, bot
 from .helpers.exceptions import CancelProcess
 
-ENV = bool(os.environ.get("ENV", False))
-
-if ENV:
+if ENV := bool(os.environ.get("ENV", False)):
     from .Config import Config
-else:
-    if os.path.exists("config.py"):
-        from config import Development as Config
+elif os.path.exists("config.py"):
+    from config import Development as Config
 
 
 def load_module(shortname):
@@ -41,7 +38,7 @@ def load_module(shortname):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        LOGS.info("Successfully imported " + shortname)
+        LOGS.info(f'Successfully imported {shortname}')
     else:
         import userbot.utils
 
@@ -64,8 +61,8 @@ def load_module(shortname):
         sys.modules["userbot.events"] = userbot.utils
         spec.loader.exec_module(mod)
         # for imports
-        sys.modules["userbot.plugins." + shortname] = mod
-        LOGS.info("Successfully imported " + shortname)
+        sys.modules[f'userbot.plugins.{shortname}'] = mod
+        LOGS.info(f'Successfully imported {shortname}')
 
 
 def remove_plugin(shortname):
@@ -107,10 +104,10 @@ def admin_cmd(pattern=None, command=None, **args):
                 CMD_LIST.update({file_test: [cmd]})
         else:
             if len(Config.COMMAND_HAND_LER) == 2:
-                catreg = "^" + Config.COMMAND_HAND_LER
+                catreg = f'^{Config.COMMAND_HAND_LER}'
                 reg = Config.COMMAND_HAND_LER[1]
             elif len(Config.COMMAND_HAND_LER) == 1:
-                catreg = "^\\" + Config.COMMAND_HAND_LER
+                catreg = f'^\\{Config.COMMAND_HAND_LER}'
                 reg = Config.COMMAND_HAND_LER
             args["pattern"] = re.compile(catreg + pattern)
             if command is not None:
@@ -138,8 +135,7 @@ def admin_cmd(pattern=None, command=None, **args):
 
     # add blacklist chats, UB should not respond in these chats
     args["blacklist_chats"] = True
-    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
-    if len(black_list_chats) > 0:
+    if black_list_chats := list(Config.UB_BLACK_LIST_CHAT):
         args["chats"] = black_list_chats
 
     # add blacklist chats, UB should not respond in these chats
@@ -173,10 +169,10 @@ def sudo_cmd(pattern=None, command=None, **args):
                 SUDO_LIST.update({file_test: [cmd]})
         else:
             if len(Config.SUDO_COMMAND_HAND_LER) == 2:
-                catreg = "^" + Config.SUDO_COMMAND_HAND_LER
+                catreg = f'^{Config.SUDO_COMMAND_HAND_LER}'
                 reg = Config.SUDO_COMMAND_HAND_LER[1]
             elif len(Config.SUDO_COMMAND_HAND_LER) == 1:
-                catreg = "^\\" + Config.SUDO_COMMAND_HAND_LER
+                catreg = f'^\\{Config.SUDO_COMMAND_HAND_LER}'
                 reg = Config.COMMAND_HAND_LER
             args["pattern"] = re.compile(catreg + pattern)
             if command is not None:
@@ -201,8 +197,7 @@ def sudo_cmd(pattern=None, command=None, **args):
         args["outgoing"] = True
     # add blacklist chats, UB should not respond in these chats
     args["blacklist_chats"] = True
-    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
-    if black_list_chats:
+    if black_list_chats := list(Config.UB_BLACK_LIST_CHAT):
         args["chats"] = black_list_chats
     # add blacklist chats, UB should not respond in these chats
     if "allow_edited_updates" in args and args["allow_edited_updates"]:
@@ -273,13 +268,14 @@ def errors_handler(func):
             date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
             new = {"error": str(sys.exc_info()[1]), "date": datetime.datetime.now()}
 
-            text = "**USERBOT CRASH REPORT**\n\n"
-            link = "[here](https://t.me/Elizasupport01)"
-            text += "If you wanna you can report it"
-            text += f"- just forward here {link}.\n"
+            text = "**USERBOT CRASH REPORT**\n\n" + "If you wanna you can report it"
+            text += f'- just forward here [here](https://t.me/Elizasupport01).\n'
             text += "Nothing is logged except the fact of error and date\n"
-            ftext = "\nDisclaimer:\nThis file uploaded ONLY here,"
-            ftext += "\nwe logged only fact of error and date,"
+            ftext = (
+                "\nDisclaimer:\nThis file uploaded ONLY here,"
+                + "\nwe logged only fact of error and date,"
+            )
+
             ftext += "\nwe respect your privacy,"
             ftext += "\nyou may not report this error if you've"
             ftext += "\nany confidential data here, no one will see your data\n\n"
@@ -305,9 +301,8 @@ def errors_handler(func):
             stdout, stderr = await process.communicate()
             result = str(stdout.decode().strip()) + str(stderr.decode().strip())
             ftext += result
-            file = open("error.log", "w+")
-            file.write(ftext)
-            file.close()
+            with open("error.log", "w+") as file:
+                file.write(ftext)
             await errors.client.send_file(
                 Config.PRIVATE_GROUP_BOT_API_ID,
                 "error.log",
@@ -332,10 +327,11 @@ async def progress(
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
         progress_str = "[{0}{1}] {2}%\n".format(
-            "".join(["▰" for i in range(math.floor(percentage / 10))]),
-            "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
+            "".join(["▰" for _ in range(math.floor(percentage / 10))]),
+            "".join(["▱" for _ in range(10 - math.floor(percentage / 10))]),
             round(percentage, 2),
         )
+
         tmp = progress_str + "{0} of {1}\nETA: {2}".format(
             humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
         )
@@ -360,7 +356,7 @@ def humanbytes(size):
     while size > power:
         size /= power
         raised_to_pow += 1
-    return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
+    return f'{str(round(size, 2))} {dict_power_n[raised_to_pow]}B'
 
 
 def human_to_bytes(size: str) -> int:
@@ -387,12 +383,13 @@ def time_formatter(milliseconds: int) -> str:
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = (
-        ((str(days) + " day(s), ") if days else "")
-        + ((str(hours) + " hour(s), ") if hours else "")
-        + ((str(minutes) + " minute(s), ") if minutes else "")
-        + ((str(seconds) + " second(s), ") if seconds else "")
-        + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
+        (f'{str(days)} day(s), ' if days else "")
+        + (f'{str(hours)} hour(s), ' if hours else "")
+        + (f'{str(minutes)} minute(s), ' if minutes else "")
+        + (f'{str(seconds)} second(s), ' if seconds else "")
+        + (f'{str(milliseconds)} millisecond(s), ' if milliseconds else "")
     )
+
     return tmp[:-2]
 
 
@@ -572,7 +569,7 @@ def start_assistant(shortname):
         mod = importlib.util.module_from_spec(spec)
         mod.tgbot = bot.tgbot
         spec.loader.exec_module(mod)
-        sys.modules["userbot.plugins.assistant" + shortname] = mod
+        sys.modules[f'userbot.plugins.assistant{shortname}'] = mod
 
 
 async def eor(event, text):
@@ -586,21 +583,20 @@ async def eor(event, text):
 
 def media_type(message):
     if message and message.photo:
-        media = "Photo"
+        return "Photo"
     elif message and message.audio:
-        media = "Audio"
+        return "Audio"
     elif message and message.voice:
-        media = "Voice"
+        return "Voice"
     elif message and message.video_note:
-        media = "Round Video"
+        return "Round Video"
     elif message and message.gif:
-        media = "Gif"
+        return "Gif"
     elif message and message.sticker:
-        media = "Sticker"
+        return "Sticker"
     elif message and message.video:
-        media = "Video"
+        return "Video"
     elif message and message.document:
-        media = "Document"
+        return "Document"
     else:
-        media = None
-    return media
+        return None

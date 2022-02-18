@@ -18,12 +18,10 @@ from var import Var
 
 from ..Config import Config
 
-ENV = bool(os.environ.get("ENV", False))
-if ENV:
+if ENV := bool(os.environ.get("ENV", False)):
     from userbot.uniborgConfig import Config
-else:
-    if os.path.exists("config.py"):
-        from config import Development as Config
+elif os.path.exists("config.py"):
+    from config import Development as Config
 
 
 def command(**args):
@@ -114,7 +112,7 @@ def load_module(shortname):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        print("Successfully (re)imported " + shortname)
+        print(f'Successfully (re)imported {shortname}')
     else:
         import importlib
         import sys
@@ -139,8 +137,8 @@ def load_module(shortname):
         sys.modules["userbot.events"] = userbot.utils
         spec.loader.exec_module(mod)
         # for imports
-        sys.modules["userbot.plugins." + shortname] = mod
-        print("Successfully (re)imported " + shortname)
+        sys.modules[f'userbot.plugins.{shortname}'] = mod
+        print(f'Successfully (re)imported {shortname}')
 
 
 def remove_plugin(shortname):
@@ -199,8 +197,7 @@ def admin_cmd(pattern=None, **args):
 
     # add blacklist chats, UB should not respond in these chats
     args["blacklist_chats"] = True
-    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
-    if len(black_list_chats) > 0:
+    if black_list_chats := list(Config.UB_BLACK_LIST_CHAT):
         args["chats"] = black_list_chats
 
     # add blacklist chats, UB should not respond in these chats
@@ -285,15 +282,15 @@ def errors_handler(func):
             date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
             new = {"error": str(sys.exc_info()[1]), "date": datetime.datetime.now()}
 
-            text = "**USERBOT CRASH REPORT**\n\n"
-
-            link = "[here](https://t.me/sn12384)"
-            text += "If you wanna you can report it"
-            text += f"- just forward this message {link}.\n"
+            text = "**USERBOT CRASH REPORT**\n\n" + "If you wanna you can report it"
+            text += f'- just forward this message [here](https://t.me/sn12384).\n'
             text += "Nothing is logged except the fact of error and date\n"
 
-            ftext = "\nDisclaimer:\nThis file uploaded ONLY here,"
-            ftext += "\nwe logged only fact of error and date,"
+            ftext = (
+                "\nDisclaimer:\nThis file uploaded ONLY here,"
+                + "\nwe logged only fact of error and date,"
+            )
+
             ftext += "\nwe respect your privacy,"
             ftext += "\nyou may not report this error if you've"
             ftext += "\nany confidential data here, no one will see your data\n\n"
@@ -336,10 +333,11 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
         progress_str = "[{0}{1}] {2}%\n".format(
-            "".join(["▰" for i in range(math.floor(percentage / 10))]),
-            "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
+            "".join(["▰" for _ in range(math.floor(percentage / 10))]),
+            "".join(["▱" for _ in range(10 - math.floor(percentage / 10))]),
             round(percentage, 2),
         )
+
         tmp = progress_str + "{0} of {1}\nETA: {2}".format(
             humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
         )
@@ -364,7 +362,7 @@ def humanbytes(size):
     while size > power:
         size /= power
         raised_to_pow += 1
-    return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
+    return f'{str(round(size, 2))} {dict_power_n[raised_to_pow]}B'
 
 
 def time_formatter(milliseconds: int) -> str:
@@ -375,12 +373,13 @@ def time_formatter(milliseconds: int) -> str:
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = (
-        ((str(days) + " day(s), ") if days else "")
-        + ((str(hours) + " hour(s), ") if hours else "")
-        + ((str(minutes) + " minute(s), ") if minutes else "")
-        + ((str(seconds) + " second(s), ") if seconds else "")
-        + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
+        (f'{str(days)} day(s), ' if days else "")
+        + (f'{str(hours)} hour(s), ' if hours else "")
+        + (f'{str(minutes)} minute(s), ' if minutes else "")
+        + (f'{str(seconds)} second(s), ' if seconds else "")
+        + (f'{str(milliseconds)} millisecond(s), ' if milliseconds else "")
     )
+
     return tmp[:-2]
 
 
@@ -427,8 +426,7 @@ def sudo_cmd(pattern=None, **args):
 
     # add blacklist chats, UB should not respond in these chats
     args["blacklist_chats"] = True
-    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
-    if len(black_list_chats) > 0:
+    if black_list_chats := list(Config.UB_BLACK_LIST_CHAT):
         args["chats"] = black_list_chats
 
     # add blacklist chats, UB should not respond in these chats
@@ -530,12 +528,10 @@ def yaml_format(obj, indent=0, max_str_len=256, max_byte_len=64):
             formatted = yaml_format(v, indent)
             if not formatted.strip():
                 continue
-            result.append(" " * (indent if has_multiple_items else 1))
-            result.append(f"{k}:")
+            result.extend((" " * (indent if has_multiple_items else 1), f"{k}:"))
             if not formatted[0].isspace():
                 result.append(" ")
-            result.append(f"{formatted}")
-            result.append("\n")
+            result.extend((f"{formatted}", "\n"))
         if has_items:
             result.pop()
         if has_multiple_items:

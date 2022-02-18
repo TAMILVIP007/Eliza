@@ -46,8 +46,9 @@ async def nope(per):
     await troll[0].click(
         per.chat_id,
         reply_to=per.reply_to_msg_id,
-        silent=True if per.is_reply else False,
+        silent=bool(per.is_reply),
         hide_via=True,
     )
+
 
     await per.delete()

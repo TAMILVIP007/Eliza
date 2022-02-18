@@ -8,7 +8,7 @@ from userbot.utils import admin_cmd, edit_or_reply, load_module, remove_plugin, 
 from . import ALIVE_NAME
 
 DELETE_TIMEOUT = 5
-thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
+thumb_image_path = f'{Config.TMP_DOWNLOAD_DIRECTORY}/thumb_image.jpg'
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Eliza"
 
 
@@ -52,12 +52,8 @@ async def install(event):
 async def send(event):
     if event.fwd_from:
         return
-    reply_to_id = None
-    if event.reply_to_msg_id:
-        reply_to_id = event.reply_to_msg_id
-    thumb = None
-    if os.path.exists(thumb_image_path):
-        thumb = thumb_image_path
+    reply_to_id = event.reply_to_msg_id or None
+    thumb = thumb_image_path if os.path.exists(thumb_image_path) else None
     input_str = event.pattern_match["shortname"]
     the_plugin_file = "./userbot/plugins/{}.py".format(input_str)
     if os.path.exists(the_plugin_file):

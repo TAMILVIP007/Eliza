@@ -7,6 +7,7 @@ Syntax:
 .drive delete | get
 .gclear """
 
+
 # The entire code given below is verbatim copied from
 # https://github.com/cyberboysumanjay/Gdrivedownloader/blob/master/gdrive_upload.py
 # there might be some changes made to suit the needs for this repository
@@ -31,7 +32,7 @@ from telethon import events
 from userbot.utils import admin_cmd, humanbytes, progress
 
 # Path to token json file, it should be in same directory as script
-G_DRIVE_TOKEN_FILE = Config.TMP_DOWNLOAD_DIRECTORY + "/auth_token.txt"
+G_DRIVE_TOKEN_FILE = f'{Config.TMP_DOWNLOAD_DIRECTORY}/auth_token.txt'
 # Copy your credentials from the APIs Console
 CLIENT_ID = Config.G_DRIVE_CLIENT_ID
 CLIENT_SECRET = Config.G_DRIVE_CLIENT_SECRET
@@ -84,15 +85,18 @@ async def _(event):
             ms = (end - start).seconds
             required_file_name = downloaded_file_name
             await mone.edit(
-                "Downloaded to `{}` in {} seconds.".format(downloaded_file_name, ms)
+                "Downloaded to `{}` in {} seconds.".format(
+                    required_file_name, ms
+                )
             )
+
     elif input_str:
         input_str = input_str.strip()
         if os.path.exists(input_str):
             end = datetime.now()
             ms = (end - start).seconds
             required_file_name = input_str
-            await mone.edit("Found `{}` in {} seconds.".format(input_str, ms))
+            await mone.edit("Found `{}` in {} seconds.".format(required_file_name, ms))
         else:
             await mone.edit("File Not found in local server. Give me a file path :((")
             return False
@@ -138,8 +142,7 @@ async def _(event):
     if event.fwd_from:
         return
     mone = await event.reply("Processing ...")
-    input_str = event.pattern_match.group(1)
-    if input_str:
+    if input_str := event.pattern_match.group(1):
         G_DRIVE_F_PARENT_ID = input_str
         await mone.edit(
             f"Custom Folder ID set successfully. The next uploads will upload to {G_DRIVE_F_PARENT_ID} till `.gdriveclear`"
@@ -270,7 +273,7 @@ async def _(event):
 # Get mime type and name of given file
 def file_ops(file_path):
     mime_type = guess_type(file_path)[0]
-    mime_type = mime_type if mime_type else "text/plain"
+    mime_type = mime_type or "text/plain"
     file_name = file_path.split("/")[-1]
     return file_name, mime_type
 
@@ -333,10 +336,11 @@ async def upload_file(http, file_path, file_name, mime_type, event, parent_id):
         if status:
             percentage = int(status.progress() * 100)
             progress_str = "[{0}{1}]\nProgress: {2}%\n".format(
-                "".join(["█" for i in range(math.floor(percentage / 5))]),
-                "".join(["░" for i in range(20 - math.floor(percentage / 5))]),
+                "".join(["█" for _ in range(math.floor(percentage / 5))]),
+                "".join(["░" for _ in range(20 - math.floor(percentage / 5))]),
                 round(percentage, 2),
             )
+
             current_message = (
                 f"uploading to gDrive\nFile Name: {file_name}\n{progress_str}"
             )
@@ -351,8 +355,7 @@ async def upload_file(http, file_path, file_name, mime_type, event, parent_id):
     drive_service.permissions().insert(fileId=file_id, body=permissions).execute()
     # Define file instance and get url for download
     file = drive_service.files().get(fileId=file_id).execute()
-    download_url = file.get("catContentLink")
-    return download_url
+    return file.get("catContentLink")
 
 
 async def create_directory(http, directory_name, parent_id):
@@ -403,8 +406,7 @@ async def gdrive_list_file_md(service, file_id):
     try:
         file = service.files().get(fileId=file_id).execute()
         # logger.info(file)
-        file_meta_data = {}
-        file_meta_data["title"] = file["title"]
+        file_meta_data = {'title': file["title"]}
         mimeType = file["mimeType"]
         file_meta_data["createdDate"] = file["createdDate"]
         if mimeType == G_DRIVE_DIR_MIME_TYPE:
@@ -454,10 +456,9 @@ async def gdrive_search(http, search_query):
                 file_id = file.get("id")
                 if file.get("mimeType") == G_DRIVE_DIR_MIME_TYPE:
                     msg += f"🗃️ <a href='https://drive.google.com/drive/folders/{file_id}'>{file_title}</a>"
-                    msg += f" <code>{file_id}</code>\n"
                 else:
                     msg += f"👉 <a href='https://drive.google.com/uc?id={file_id}&export=download'>{file_title}</a>"
-                    msg += f" <code>{file_id}</code>\n"
+                msg += f" <code>{file_id}</code>\n"
             page_token = response.get("nextPageToken", None)
             if page_token is None:
                 break

@@ -2,9 +2,10 @@ import os
 
 from telethon.tl.types import ChatBannedRights
 
-ENV = bool(os.environ.get("ENV", False))
-if ENV:
+if ENV := bool(os.environ.get("ENV", False)):
     import os
+
+
 
     class Config(object):
         LOGGER = True
@@ -31,21 +32,17 @@ if ENV:
         # confidential session files
         # Get your own APPID from https://api.openweathermap.org/data/2.5/weather
         OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
-        # Send .get_id in any group to fill this value.
-        PRIVATE_GROUP_BOT_API_ID = os.environ.get("PRIVATE_GROUP_BOT_API_ID", None)
-        if PRIVATE_GROUP_BOT_API_ID:
+        if PRIVATE_GROUP_BOT_API_ID := os.environ.get(
+            "PRIVATE_GROUP_BOT_API_ID", None
+        ):
             PRIVATE_GROUP_BOT_API_ID = int(PRIVATE_GROUP_BOT_API_ID)
-        # same as  PRIVATE_GROUP_BOT_API_ID but set only if you need pmpermit
-        PRIVATE_GROUP_ID = os.environ.get("PRIVATE_GROUP_ID", None)
-        if PRIVATE_GROUP_ID:
+        if PRIVATE_GROUP_ID := os.environ.get("PRIVATE_GROUP_ID", None):
             PRIVATE_GROUP_ID = int(PRIVATE_GROUP_ID)
-        PLUGIN_CHANNEL = os.environ.get("PLUGIN_CHANNEL", None)
-        if PLUGIN_CHANNEL:
+        if PLUGIN_CHANNEL := os.environ.get("PLUGIN_CHANNEL", None):
             PLUGIN_CHANNEL = int(PLUGIN_CHANNEL)
-        # Send .get_id in any channel to fill this value. ReQuired for @Manuel15
-        # inspiration to work!
-        PRIVATE_CHANNEL_BOT_API_ID = os.environ.get("PRIVATE_CHANNEL_BOT_API_ID", None)
-        if PRIVATE_CHANNEL_BOT_API_ID:
+        if PRIVATE_CHANNEL_BOT_API_ID := os.environ.get(
+            "PRIVATE_CHANNEL_BOT_API_ID", None
+        ):
             PRIVATE_CHANNEL_BOT_API_ID = int(PRIVATE_CHANNEL_BOT_API_ID)
         # This is required for the speech to text plugin. Get your USERNAME from
         # https://console.bluemix.net/docs/services/speech-to-text/getting-started.html
@@ -89,7 +86,7 @@ if ENV:
         )
         CHATS_TO_MONITOR_FOR_ANTI_FLOOD = []
         # specify LOAD and NO_LOAD
-        NO_LOAD = [x for x in os.environ.get("NO_LOAD", "").split()]
+        NO_LOAD = list(os.environ.get("NO_LOAD", "").split())
         # in alive message pic
         ALIVE_PIC = os.environ.get("ALIVE_PIC", None)
         # in pm permit pic
@@ -157,9 +154,7 @@ if ENV:
         DEFAULT_NAME = os.environ.get("DEFAULT_NAME", None)
         # define "spam" in PM
         MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 5))
-        # leave this blank, should be automatically filled for Heroku.com users
-        PM_LOGGR_BOT_API_ID = os.environ.get("PM_LOGGR_BOT_API_ID", None)
-        if PM_LOGGR_BOT_API_ID:
+        if PM_LOGGR_BOT_API_ID := os.environ.get("PM_LOGGR_BOT_API_ID", None):
             PM_LOGGR_BOT_API_ID = int(PM_LOGGR_BOT_API_ID)
         # to work manager.py
         DUAL_LOG = os.environ.get("DUAL_LOG", False)
@@ -169,9 +164,9 @@ if ENV:
         # JustWatch Country
         WATCH_COUNTRY = os.environ.get("WATCH_COUNTRY", "IN")
         TZ = os.environ.get("TZ", None)
-        # RSS_POST_MSG_GROUP_ID = map(int, os.environ.get("RSS_POST_MSG_GROUP_ID", None).split())
-        RSS_POST_MSG_GROUP_ID = os.environ.get("RSS_POST_MSG_GROUP_ID", None)
-        if RSS_POST_MSG_GROUP_ID:
+        if RSS_POST_MSG_GROUP_ID := os.environ.get(
+            "RSS_POST_MSG_GROUP_ID", None
+        ):
             RSS_POST_MSG_GROUP_ID = int(RSS_POST_MSG_GROUP_ID)
         # SpamWatch API you can get it from get api from http://t.me/SpamWatchBot?start=token
         SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
@@ -181,9 +176,7 @@ if ENV:
         DEEP_AI = os.environ.get("DEEP_AI", None)
         # For custom stickerpack names
         CUSTOM_STICKER_PACKNAME = os.environ.get("CUSTOM_STICKER_PACKNAME", None)
-        # Owner id to show profile link of given id as owner
-        OWNER_ID = os.environ.get("OWNER_ID", None)
-        if OWNER_ID:
+        if OWNER_ID := os.environ.get("OWNER_ID", None):
             OWNER_ID = int(OWNER_ID)
         # Last.fm plugin
         BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
@@ -205,8 +198,8 @@ if ENV:
         CHANGE_TIME = int(os.environ.get("CHANGE_TIME", 60))
 
 
-else:
 
+else:
     class Config(object):
         DB_URI = None
         # Add your UniBorg Vars Here

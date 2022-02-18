@@ -86,7 +86,7 @@ async def _(event):
     await event.edit("succesfully reverted to your account back")
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
+            BOTLOG_CHATID, '#REVERT\nSuccesfully reverted back to your profile'
         )
 
 
@@ -100,12 +100,11 @@ async def get_full_user(event):
                     or previous_message.forward.channel_id
                 )
             )
-            return replied_user, None
         else:
             replied_user = await event.client(
                 GetFullUserRequest(previous_message.from_id)
             )
-            return replied_user, None
+        return replied_user, None
     else:
         input_str = None
         try:

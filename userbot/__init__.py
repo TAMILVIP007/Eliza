@@ -39,8 +39,9 @@ WEBO_ID = ["1212470244", "1484518726"]
 
 # Bot Logs setup:
 if bool(ENV):
-    CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
-    if CONSOLE_LOGGER_VERBOSE:
+    if CONSOLE_LOGGER_VERBOSE := sb(
+        os.environ.get("CONSOLE_LOGGER_VERBOSE", "False")
+    ):
         basicConfig(
             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
             level=DEBUG,
@@ -51,12 +52,9 @@ if bool(ENV):
         )
     LOGS = getLogger(__name__)
 
-    # Check if the config was edited by using the already used variable.
-    # Basically, its the 'virginity check' for the config file ;)
-    CONFIG_CHECK = os.environ.get(
+    if CONFIG_CHECK := os.environ.get(
         "___________PLOX_______REMOVE_____THIS_____LINE__________", None
-    )
-    if CONFIG_CHECK:
+    ):
         LOGS.info(
             "Please remove the line mentioned in the first hashtag from the config.env file"
         )

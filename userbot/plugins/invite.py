@@ -26,7 +26,6 @@ async def _(event):
                     )
                 except Exception as e:
                     await event.reply(str(e))
-            await event.edit("Invited Successfully")
         else:
             # https://lonamicats.github.io/Telethon/methods/channels/invite_to_channel.html
             for user_id in to_add_users.split(" "):
@@ -38,7 +37,8 @@ async def _(event):
                     )
                 except Exception as e:
                     await event.reply(str(e))
-            await event.edit("Invited Successfully")
+
+        await event.edit("Invited Successfully")
 
 
 from telethon.errors import (
@@ -93,15 +93,14 @@ async def get_chatinfo(event):
 def user_full_name(user):
     names = [user.first_name, user.last_name]
     names = [i for i in list(names) if i]
-    full_name = " ".join(names)
-    return full_name
+    return " ".join(names)
 
 
 @borg.on(admin_cmd(pattern=r"inviteall ?(.*)"))
 async def get_users(event):
     sender = await event.get_sender()
     me = await event.client.get_me()
-    if not sender.id == me.id:
+    if sender.id != me.id:
         hell = await event.reply("`processing...`")
     else:
         hell = await event.edit("`processing...`")
@@ -123,13 +122,13 @@ async def get_users(event):
             await event.client(
                 functions.channels.InviteToChannelRequest(channel=chat, users=[user.id])
             )
-            s = s + 1
+            s += 1
             await hell.edit(
                 f"**Terminal Running...**\n\nâ¢ Invited `{s}` people \nâ¢ Failed to Invite `{f}` people\n\n**Ã LastError:** `{error}`"
             )
         except Exception as e:
             error = str(e)
-            f = f + 1
+            f += 1
     return await hell.edit(
         f"**Terminal Finished** \n\nâ¢ Successfully Invited `{s}` people \nâ¢ failed to invite `{f}` people"
     )

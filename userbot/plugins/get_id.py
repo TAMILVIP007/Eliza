@@ -60,5 +60,5 @@ async def _(event):
                     x.first_name, x.id, x.id
                 )
     except Exception as e:
-        mentions += " " + str(e) + "\n"
+        mentions += f' {str(e)}' + "\n"
     await event.edit(mentions)
